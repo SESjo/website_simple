@@ -2,7 +2,6 @@
 title: "My Website"
 description: |
   Welcome to the website. I hope you enjoy it!
-site: distill::distill_website
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +12,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Learn more about publishing to GitHub Pages at:
 # https://rstudio.github.io/distill/publish_website.html#github-pages
+
+# site: distill::distill_website
+# output: distill::distill_article
+
+# output: bookdown::gitbook
+# site: bookdown::bookdown_site
 
 ```
 

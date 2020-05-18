@@ -4,6 +4,7 @@ description: |
   My Website
 output_dir: "docs"
 navbar:
+  type: inverse
   right:
     - text: "Home"
       href: index.html
@@ -13,6 +14,11 @@ navbar:
       menu:
         - text: "Saegus Recrutment"
           href: presentation_jjoumaa.html
-    - icon: fab fa-github
-      href: https://github.com/SESjo  
-output: distill::distill_article
+    - icon: fa-github
+      href: https://github.com/SESjo
+  left:
+    - text: "My Website"
+      href: index.html
+output:
+  bookdown::html_document2:
+    theme: cosmo
