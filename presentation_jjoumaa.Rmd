@@ -4,15 +4,6 @@ author:
   - name: "Joffrey JOUMAA"
     url: https://github.com/SESjo
 date: "`r format(Sys.Date(), format = '%d %B %Y')`"
-output: 
-  bookdown::html_document2:
-    code_folding: hide
-    df_print: paged
-    fig_caption: yes
-    toc: yes
-    toc_float:
-      collapsed: yes
-      smooth_scroll: no
 ---
 
 <style>

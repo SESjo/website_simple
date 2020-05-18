@@ -22,3 +22,10 @@ navbar:
 output:
   bookdown::html_document2:
     theme: cosmo
+    code_folding: hide
+    df_print: paged
+    fig_caption: yes
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: no
