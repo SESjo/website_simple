@@ -1,16 +1,14 @@
 ---
 title: "Saegus Interview Project: Predicting Bike Rentals"
-author: "Joffrey JOUMAA"
+author:
+  - name: "Joffrey JOUMAA"
+    url: https://github.com/SESjo
+    affiliation: TheGreenData
+    affiliation_url: https://www.thegreendata.com
+description: | 
+  Scientific and technical writing, native to the web
 type: "inverse"
-output:
-  distill::distill_article:
-    code_folding: hide
-    df_print: paged
-    fig_caption: yes
-    toc: yes
-    toc_float:
-      collapsed: yes
-      smooth_scroll: no
+output: distill::distill_article
 ---
 
 <style>
@@ -29,6 +27,15 @@ knitr::opts_chunk$set(echo = TRUE,
 )
 
 knitr::opts_knit$set(root.dir = "~/Documents/post/saegus/bike_rental_hour/")
+
+
+    # code_folding: hide
+    # df_print: paged
+    # fig_caption: yes
+    # toc: yes
+    # toc_float:
+    #   collapsed: yes
+    #   smooth_scroll: no
 ```
 
 # Context
