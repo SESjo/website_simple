@@ -1,0 +1,12 @@
+base
+data.table
+ggplot2
+GGally
+lattice
+caret
+foreach
+iterators
+doMC
+randomForest
+corrplot
+plotly
