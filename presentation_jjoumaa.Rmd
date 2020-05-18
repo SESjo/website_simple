@@ -1,15 +1,14 @@
 ---
 title: "Saegus Interview Project: Predicting Bike Rentals"
 author: "Joffrey JOUMAA"
-date: "`r format(Sys.Date(), format = '%d %B %Y')`"
 output:
-  bookdown::html_document2:
+  html_document:
     code_folding: hide
     df_print: paged
     fig_caption: yes
     toc: yes
     toc_float:
-      collapsed: no
+      collapsed: yes
       smooth_scroll: no
 ---
 
@@ -24,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE, 
                       warning = FALSE, 
                       comment = NA, 
-                      cache = FALSE,
+                      cache = TRUE,
                       fig.align = "center"
 )
 

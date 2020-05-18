@@ -416,9 +416,9 @@ body {
 text-align: justify}
 </style>
 <div id="context" class="section level1">
-<h1><span class="header-section-number">1</span> Context</h1>
+<h1>Context</h1>
 <div id="overview" class="section level2">
-<h2><span class="header-section-number">1.1</span> Overview</h2>
+<h2>Overview</h2>
 <p>Many American cities have communal bike sharing stations where you can rent bicycles by the hour or day. Washington, D.C. is one of these cities. The District collects detailed data on the number of bicycles people rent by the hour and day.</p>
 <p><a href="http://www.liaad.up.pt/area/fanaee">Hadi Fanaee-T</a> at <a href="http://www.up.pt/">the University of Porto</a> compiled this data into a CSV file, which you’ll be working with in this project. The file contains <code>17380</code> rows, with each row representing the number of bike rentals for a single hour of a single day. You can download the data from <a href="http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset">the University of California</a>, Irvine’s website.</p>
 <p>Here’s what the first five rows look like:</p>
@@ -464,14 +464,14 @@ head(dataset)</code></pre>
 </ul>
 </div>
 <div id="instructions" class="section level2">
-<h2><span class="header-section-number">1.2</span> Instructions</h2>
+<h2>Instructions</h2>
 <p>Let’s say your customer want to predict the total number of bikes people rented in a given hour (<code>cnt</code> column ).</p>
 <p>In this project you’ll have to provide a clear and meaningfull data analysis using data story tellings approach and statistical technics.</p>
 <p>Have Fun!</p>
 </div>
 </div>
 <div id="data-pretreatment" class="section level1">
-<h1><span class="header-section-number">2</span> Data Pretreatment</h1>
+<h1>Data Pretreatment</h1>
 <p>For this part, I’ve simply checked the presence of missing value.</p>
 <pre class="r"><code># the coding way 
 dataset[, any(is.na(.SD))]</code></pre>
@@ -506,9 +506,9 @@ dataset[, &#39;:=&#39; (season = as.factor(season),
                 weathersit = as.factor(weathersit))]</code></pre>
 </div>
 <div id="multiple-scenarios" class="section level1">
-<h1><span class="header-section-number">3</span> Multiple Scenarios</h1>
+<h1>Multiple Scenarios</h1>
 <div id="a-simple-one" class="section level2">
-<h2><span class="header-section-number">3.1</span> A Simple One</h2>
+<h2>A Simple One</h2>
 <p>In this scenario, I’ve only got few minutes to answer the question. So I provide a simple graphical way to answer the question.</p>
 <pre class="r"><code># a simple answer
 ggplotly(ggplot(dataset, aes(x = hr, y = cnt)) + 
@@ -522,11 +522,11 @@ ggplotly(ggplot(dataset, aes(x = hr, y = cnt)) +
 <p>This graph is interesting, since it highlights the distribution of the rental bike count accross an “average” day. The problem here, is that we <em>simply</em> aggregate the data, without considering other information, such as the variation induced by weather condition or type of day (working day or holiday) on the rental bike count. That’s the reason why, if I’ve got enough time, I’ll definitely support the second scenario.</p>
 </div>
 <div id="without-weather-conditions" class="section level2">
-<h2><span class="header-section-number">3.2</span> Without Weather Conditions</h2>
+<h2>Without Weather Conditions</h2>
 <p>This scenario requires that I have enough time to perform modelling using all information provided in the dataset, except those related to weather conditions (the numerical ones). Why? Simply because in the real world, if my customer wants to know the rental bike count at noon tomorrow, he also has to have relevant information about the weather conditions tomorrow at noon which, as everyknows, might be quite tricky.</p>
 <p>That is the reason why for this part, I’ve focused on building a predictive model of the rental bike count, only based on <em>non-numerical-weather-condition</em> variables.</p>
 <div id="overview-of-selected-variables" class="section level3 tabset">
-<h3><span class="header-section-number">3.2.1</span> Overview of Selected Variables</h3>
+<h3>Overview of Selected Variables</h3>
 <p>Here, for each variable I’ve performed a non-parametric statistical test, to highlight if there is difference in rental bike count between the modalities of the considered categorial variable:</p>
 <ul>
 <li><strong>Wilcox Test</strong>: to compare two modalities</li>
@@ -536,7 +536,7 @@ ggplotly(ggplot(dataset, aes(x = hr, y = cnt)) +
 pairsVarCat = lapply(colnames(dataset)[3:10],function(x){
   ggpairs(dataset, columns = c(&quot;cnt&quot;, x), cardinality_threshold = 24)})</code></pre>
 <div id="season" class="section level4">
-<h4><span class="header-section-number">3.2.1.1</span> Season</h4>
+<h4>Season</h4>
 <pre class="r"><code># statistical test
 kruskal.test(cnt~season, data = dataset)</code></pre>
 <pre><code>
@@ -550,7 +550,7 @@ pairsVarCat[[1]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/seasonGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="year" class="section level4">
-<h4><span class="header-section-number">3.2.1.2</span> Year</h4>
+<h4>Year</h4>
 <pre class="r"><code># statistical test
 wilcox.test(cnt ~ yr, data = dataset)</code></pre>
 <pre><code>
@@ -565,7 +565,7 @@ pairsVarCat[[2]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/yrGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="month" class="section level4">
-<h4><span class="header-section-number">3.2.1.3</span> Month</h4>
+<h4>Month</h4>
 <pre class="r"><code># statistical test
 kruskal.test(cnt ~ mnth, data = dataset)</code></pre>
 <pre><code>
@@ -579,7 +579,7 @@ pairsVarCat[[3]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/monthGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hour" class="section level4">
-<h4><span class="header-section-number">3.2.1.4</span> Hour</h4>
+<h4>Hour</h4>
 <pre class="r"><code># statistical test
 kruskal.test(cnt ~ hr, data = dataset)</code></pre>
 <pre><code>
@@ -593,7 +593,7 @@ pairsVarCat[[4]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/hrGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="holiday" class="section level4">
-<h4><span class="header-section-number">3.2.1.5</span> Holiday</h4>
+<h4>Holiday</h4>
 <pre class="r"><code># statistical test
 wilcox.test(cnt ~ holiday, data = dataset)</code></pre>
 <pre><code>
@@ -608,7 +608,7 @@ pairsVarCat[[5]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/holidayGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="weekday" class="section level4">
-<h4><span class="header-section-number">3.2.1.6</span> Weekday</h4>
+<h4>Weekday</h4>
 <pre class="r"><code># statistical test
 kruskal.test(cnt ~ weekday, data = dataset)</code></pre>
 <pre><code>
@@ -622,7 +622,7 @@ pairsVarCat[[6]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/weekdayGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="working-day" class="section level4">
-<h4><span class="header-section-number">3.2.1.7</span> Working Day</h4>
+<h4>Working Day</h4>
 <pre class="r"><code># statistical test
 wilcox.test(cnt ~ workingday, data = dataset)</code></pre>
 <pre><code>
@@ -637,7 +637,7 @@ pairsVarCat[[7]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/workdayGraph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="weathersit" class="section level4">
-<h4><span class="header-section-number">3.2.1.8</span> Weathersit</h4>
+<h4>Weathersit</h4>
 <pre class="r"><code># statistical test
 kruskal.test(cnt ~ weathersit, data = dataset)</code></pre>
 <pre><code>
@@ -652,7 +652,7 @@ pairsVarCat[[8]]</code></pre>
 </div>
 </div>
 <div id="machine-learning-part" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Machine Learning Part</h3>
+<h3>Machine Learning Part</h3>
 <p>In this part, I’ve only chosen to present a random forest, but it is advised to test several other algorithms. To build this model, I’ve used the <code>caret</code> package which provides relevant tools when building a whole pipeline.</p>
 <pre class="r"><code># format data
 dataset[,&#39;:=&#39; (season = as.numeric(season),
@@ -719,7 +719,7 @@ ggplot(data.table(Predictions = predictionsRf1,
 </div>
 </div>
 <div id="with-weather-conditions" class="section level2">
-<h2><span class="header-section-number">3.3</span> With Weather Conditions</h2>
+<h2>With Weather Conditions</h2>
 <p>In this scenario, I’ve assumed the customer has an absolute knowledge of everything (especially the weather condition for the day and the hour he wants to predict the rental bike count). So, I’ve developed a model that includes variables related to weather conditions.</p>
 <p>As information on weather conditions is represented by numerical variables, I’ve drawn a correlogram to identify if there are variables correlated with one another.</p>
 <pre class="r"><code># identification weather conditions variables
@@ -734,7 +734,7 @@ corrplot(descrCor, method = &quot;pie&quot;)</code></pre>
 <p>Here, we can see that <code>temp</code> and <code>atemp</code> are two strongly correlated variables. That means they carry almost the same information, which is why, to avoid redundant information for the Machine Learning Part, we must remove one of both variables. Here I choose to remove the <code>temp</code> variable since it is not <em>adjusted</em>. It’s a subjective choice, but I’ve supposed if <code>atemp</code> is the adjusted temperature, then it must have more information than simply the temperature alone. One way to choose more objectively between both variables, would be to compare the predictions of two models, one with <code>temp</code> and the other with <code>atemp</code>, and to keep the variable associated with the model having the best predictions.</p>
 <p>Now I’ll present the numerical variables that we’re going to add to the previous model.</p>
 <div id="overview-of-selected-weather-conditions-variables" class="section level3 tabset">
-<h3><span class="header-section-number">3.3.1</span> Overview of Selected Weather-Conditions Variables</h3>
+<h3>Overview of Selected Weather-Conditions Variables</h3>
 <p>Here, for each weather condition variable, I’ve drawn a multi plot that allows to investigate the correlation associated with the <code>cnt</code> variable.</p>
 <pre class="r"><code># but first, build plots
 pairsVarNum = lapply(c(&quot;atemp&quot;, &quot;hum&quot;, &quot;windspeed&quot;),function(x){     
@@ -747,26 +747,26 @@ pairsVarNum = lapply(c(&quot;atemp&quot;, &quot;hum&quot;, &quot;windspeed&quot;
           upper = list(combo = wrap(&quot;box_no_facet&quot;,             
                                     outlier.shape = NA)))})       </code></pre>
 <div id="adjusted-temperature" class="section level4">
-<h4><span class="header-section-number">3.3.1.1</span> Adjusted Temperature</h4>
+<h4>Adjusted Temperature</h4>
 <pre class="r"><code>pairsVarNum[[1]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/atemp-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This suggests an increase of the rental bike count with the increasing of the adjusted temperature.</p>
 </div>
 <div id="humidity" class="section level4">
-<h4><span class="header-section-number">3.3.1.2</span> Humidity</h4>
+<h4>Humidity</h4>
 <pre class="r"><code>pairsVarNum[[2]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/hum-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This suggests a decrease of the rental bike count with the increasing of the humidity.</p>
 </div>
 <div id="windspeed" class="section level4">
-<h4><span class="header-section-number">3.3.1.3</span> Windspeed</h4>
+<h4>Windspeed</h4>
 <pre class="r"><code>pairsVarNum[[3]]</code></pre>
 <p><img src="presentation_jjoumaa_files/figure-html/windspeed-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This suggests there is almost to linear relationship between rental bike count and windspeed.</p>
 </div>
 </div>
 <div id="machine-learning-part-1" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Machine Learning Part</h3>
+<h3>Machine Learning Part</h3>
 <p>It’s almost the same process seen previously, except than we added <code>atemp</code>, <code>hum</code> and <code>windspeed</code> to the variables of the model.</p>
 <pre class="r"><code># training dataset
 dataTrain2 = dataset[trainIndex,
@@ -802,7 +802,7 @@ ggplot(data.table(Predictions = predictionsRf2,
 </div>
 </div>
 <div id="model-selection" class="section level2">
-<h2><span class="header-section-number">3.4</span> Model Selection</h2>
+<h2>Model Selection</h2>
 <p>Since we build two random forest models, we then need to choose which one to use to make prediction on the rental bike counts. First, we can check the performance metric (<em>i.e.</em> RMSE, for Root Mean Square Error, here) during the cross validation process.</p>
 <pre class="r"><code># resample results
 results = resamples(list(RF1 = mdl.rf1, 
@@ -839,7 +839,7 @@ print(&#39;Results for the model with almost all variables&#39;)</code></pre>
 <p>These results suggest the Random Forest based only on categorial variables performed better than the other model including weather condition information.</p>
 </div>
 <div id="go-further" class="section level2">
-<h2><span class="header-section-number">3.5</span> Go Further</h2>
+<h2>Go Further</h2>
 <ul>
 <li><strong>Data Preparation</strong>
 <ul>
