@@ -1,6 +1,7 @@
 ---
 title: "Saegus Interview Project: Predicting Bike Rentals"
 author: "Joffrey JOUMAA"
+type: "inverse"
 output:
   distill::distill_article:
     code_folding: hide
