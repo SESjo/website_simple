@@ -7,7 +7,15 @@ author:
     affiliation_url: https://www.thegreendata.com
 description: | 
   Scientific and technical writing, native to the web
-output: distill::distill_article
+output: 
+  html_document:
+    code_folding: hide
+    df_print: paged
+    fig_caption: yes
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: no
 ---
 
 <style>
